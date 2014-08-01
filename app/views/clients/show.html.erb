@@ -1,3 +1,6 @@
+<p align="center">
+	<strong>Личный кабинет</strong>
+</p>
 <p>
   <strong>Name:</strong>
   <%= @client.name %>
@@ -5,6 +8,10 @@
   <strong>Email:</strong>
   <%= @client.email %>
 </p>
+<p>
+	<%= link_to 'Мои заказы', client_orders_path(current_client) %>
+</p>
+
 
 <%= link_to 'Edit', edit_client_path(@client) %> |
 <%= link_to 'Back', client_path %>
