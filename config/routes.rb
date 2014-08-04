@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
 
+  
+
   resources :clients do
     resources :orders, only: [:index]
   end

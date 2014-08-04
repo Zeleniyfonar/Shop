@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140729100007) do
+ActiveRecord::Schema.define(version: 20140804104544) do
 
   create_table "bodies", force: true do |t|
     t.string   "pol"
@@ -55,11 +55,24 @@ ActiveRecord::Schema.define(version: 20140729100007) do
     t.integer  "state"
     t.string   "confirmation_token"
     t.datetime "confirmation_token_sent_at"
+    t.integer  "favorite_id"
   end
 
   add_index "clients", ["email"], name: "index_clients_on_email", unique: true
+  add_index "clients", ["favorite_id"], name: "index_clients_on_favorite_id"
   add_index "clients", ["password_reset_token"], name: "index_clients_on_password_reset_token"
   add_index "clients", ["remember_token"], name: "index_clients_on_remember_token"
+
+  create_table "favorites", force: true do |t|
+  end
+
+  create_table "favorites_products", id: false, force: true do |t|
+    t.integer "favorite_id", null: false
+    t.integer "product_id",  null: false
+  end
+
+  add_index "favorites_products", ["favorite_id"], name: "index_favorites_products_on_favorite_id"
+  add_index "favorites_products", ["product_id"], name: "index_favorites_products_on_product_id"
 
   create_table "line_items", force: true do |t|
     t.integer  "product_id"
