@@ -24,12 +24,28 @@
           <i class="fa fa-heart"></i>
         <% end %>
         
-        <form action="/favorites" class="create_favorite"  method="post" %>
-              <label for="favorite_id">Id</label><br>
-              <input id="favorite_id" name="favorite_id" type="text" value="<%= @client.favorite.id %>" ><br>  <label for="product_id">Id</label><br>
-              <input id="product_id" name="product_id" type="text" value="<%= product.id %>" ><br>
-              <input type="submit">            
-        </form>
+      <%= form_for(@favorite, :url => url_for(:controller => 'favorites', :action => 'create')) do |f| %>
+          <% if @favorite.errors.any? %>
+              <div id="error_explanation">
+                  <h2><%= pluralize(@favorite.errors.count, "error") %> prohibited this favorite from being saved:</h2>
+
+                  <ul>
+                      <% @favorite.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                      <% end %>
+                  </ul>
+              </div>
+          <% end %>
+
+          <div class="actions">
+            <%= f.label :id %>
+            <%= text_field_tag 'favorite[product_ids][]', product.id %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+      <% end %>
 
       </li><!--/entry-->
       

@@ -47,8 +47,6 @@ Rails.application.routes.draw do
 
   resources :favorites
 
-  #get 'favorite/index'
-
   get 'store/index'
 
   get 'home/index'
