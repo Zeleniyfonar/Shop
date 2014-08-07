@@ -20,10 +20,17 @@
         <%= button_to line_items_path(product_id: product), remote: true, class: "add-to-cart button middle_green" do %>
           <i class="fa fa-shopping-cart"></i>   Add to cart
         <% end %>
-        <%= button_to line_items_path(product_id: product), remote: true, class: "add-to-favorites button middle_green" do %>
+        <%= button_to favorites_path(product_id: product), remote: true, class: "add-to-favorites button middle_green" do %>
           <i class="fa fa-heart"></i>
         <% end %>
-          
+        
+        <form action="/favorites" class="create_favorite"  method="post" %>
+              <label for="favorite_id">Id</label><br>
+              <input id="favorite_id" name="favorite_id" type="text" value="<%= @client.favorite.id %>" ><br>  <label for="product_id">Id</label><br>
+              <input id="product_id" name="product_id" type="text" value="<%= product.id %>" ><br>
+              <input type="submit">            
+        </form>
+
       </li><!--/entry-->
       
       <% end %>

@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  
-
-  
 
   resources :clients do
     resources :orders, only: [:index]
@@ -29,6 +26,9 @@ Rails.application.routes.draw do
   match '/change_add' => 'orders#change_add', via: 'get'
   match '/change_decrement' => 'orders#change_decrement', via: 'get'
 
+  match '/favorites', to: 'favorites#index' , via: 'get'
+
+
   get 'admin' => 'admin#index'
   controller :session do
     get 'login' => :new
@@ -44,6 +44,10 @@ Rails.application.routes.draw do
   resources :line_items
 
   resources :carts
+
+  resources :favorites
+
+  #get 'favorite/index'
 
   get 'store/index'
 

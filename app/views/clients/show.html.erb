@@ -11,7 +11,12 @@
 <p>
 	<%= link_to 'Мои заказы', client_orders_path(current_client) %>
 </p>
+<p>
+	<%= link_to 'Избранное', favorites_path %>
+</p>
 
+<p>
+	<strong>
 
 <%= link_to 'Edit', edit_client_path(@client) %> |
 <%= link_to 'Back', client_path %>

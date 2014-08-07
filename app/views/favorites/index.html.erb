@@ -1,0 +1,4 @@
+<%= @client.favorite.products.each do |favorite| %>
+	<%= favorite.label :title %>
+	<%= favorite.text_field :title %>
+<% end %>

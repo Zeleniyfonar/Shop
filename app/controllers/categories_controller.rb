@@ -17,6 +17,7 @@ class CategoriesController < ApplicationController
     @search = @category.products.search(params[:q])
     @products = @search.result(distinct: true)
     @categories = Category.all
+    @client = current_client
   end
 
   # GET /categories/new

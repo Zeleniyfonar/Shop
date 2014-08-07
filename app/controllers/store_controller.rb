@@ -8,5 +8,6 @@ class StoreController < ApplicationController
     @products = @search.result(distinct: true)
     @categories = Category.all
     @carts = Cart.all
+    @client = current_client
   end
 end

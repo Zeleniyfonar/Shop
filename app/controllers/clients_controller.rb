@@ -29,8 +29,10 @@ class ClientsController < ApplicationController
   # POST /clients.json
   def create
     @client = Client.new(client_params)
+    @favorite = Favorite.new()
     respond_to do |format|
-      if @client.save
+      if (@client.save && @favorite.save)
+        @favorite.update_attribute("client_id", @client.id)
         @client.generate_confirm!
         ConfirmationNotifier.confirmation_token(@client).deliver
         flash[:success] = "Добро пожаловать в интернет магазин";

@@ -7,10 +7,7 @@ class ApplicationController < ActionController::Base
   
   include SessionsHelper
 
-  def session_nil
-    if session[:user_id].nil? 
-    end 
-  end
+
   
   protected
     def authorize

@@ -3,7 +3,7 @@ class Client < ActiveRecord::Base
   before_create :create_remember_token
 
   has_many :orders
-  has_many :favorites
+  has_one :favorite
 
   def Client.new_remember_token
     SecureRandom.urlsafe_base64
