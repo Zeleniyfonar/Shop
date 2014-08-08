@@ -1,4 +1,22 @@
-<%= @client.favorite.products.each do |favorite| %>
+<p>
+	<strong> Избранное </strong>
+</p>
+<% @client.favorite.products.each do |product| %>
 	
-	<%= favorite.id %>
+<table>
+  <tr class="total_line">
+    <td id = "total-line-items"><%= product.id %></td>
+	<td id = "total-line-items"><%= product.title%></td>
+	<%= form_for(@client.favorite, :url => url_for(:controller => 'favorites', :action => 'destroyRef')) do |f| %>
+		  <div class="actions">
+            <%= f.label :id %>
+            <%= text_field_tag 'product_id', product.id %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+      <% end %>
+  </tr>
+</table>
 <% end %>

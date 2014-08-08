@@ -45,7 +45,11 @@ Rails.application.routes.draw do
 
   resources :carts
 
-  resources :favorites
+  resources :favorites do
+    collection do
+      post 'destroyRef'
+    end
+  end
 
   get 'store/index'
 
