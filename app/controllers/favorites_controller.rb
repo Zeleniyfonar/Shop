@@ -1,7 +1,7 @@
 class FavoritesController < ApplicationController
-	before_action :set_favorite, only: [:show, :edit, :update, :destroy]
+	before_action :set_favorite, only: [:show, :edit, :update]
 	protect_from_forgery
-	skip_before_action :authorize, only: [:create, :index, :destroy]
+	skip_before_action :authorize, only: [:create, :index, :destroyRef, :addRef]
 	
 	include CurrentCart
     before_action :set_cart
@@ -15,10 +15,10 @@ class FavoritesController < ApplicationController
     # POST /favorites
 	# POST /favorites.json
 	
-	def create
+	def addRef
 		@favorite = current_client.favorite
 		p = Product.find(params[:product_id])
-		if (p!=@favorite.products.find(params[:product_id]))
+		if (p!=@favorite.products.find_by_id(params[:product_id]))
 			@favorite.products << p
 			redirect_to home_url
 		else redirect_to store_index_url, notice: 'Товар уже добавлен в избранное' 
@@ -30,8 +30,8 @@ class FavoritesController < ApplicationController
 	
 
 	def destroyRef
-		
-
+		p = Product.find(params[:product_id])
+		current_client.favorite.products.delete(params[:product_id])
 		redirect_to home_url
 	end
 

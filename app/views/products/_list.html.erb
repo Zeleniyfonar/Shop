@@ -24,7 +24,7 @@
           <i class="fa fa-heart"></i>
         <% end %>
         
-      <%= form_for(@favorite, :url => url_for(:controller => 'favorites', :action => 'create')) do |f| %>
+      <%= form_for(current_client.favorite, :url => url_for(:controller => 'favorites', :action => 'addRef')) do |f| %>
          <div class="actions">
             <%= f.label :id %>
             <%= text_field_tag 'product_id', product.id %>

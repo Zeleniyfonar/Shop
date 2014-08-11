@@ -4,10 +4,9 @@
 <% @client.favorite.products.each do |product| %>
 	
 <table>
-  <tr class="total_line">
-    <td id = "total-line-items"><%= product.id %></td>
+  <tr class="total_line", data-favorite_id1 = "<%= product.id  %>">
 	<td id = "total-line-items"><%= product.title%></td>
-	<%= form_for(@client.favorite, :url => url_for(:controller => 'favorites', :action => 'destroyRef')) do |f| %>
+	<td><%= form_for(@client.favorite, :url => url_for(:controller => 'favorites', :action => 'destroyRef')) do |f| %>
 		  <div class="actions">
             <%= f.label :id %>
             <%= text_field_tag 'product_id', product.id %>
@@ -16,7 +15,8 @@
           <div class="actions">
             <%= f.submit %>
           </div>
-      <% end %>
+      <% end %></td>
+      <td><span class="deleteFavorite">Удалить</span></td>
   </tr>
 </table>
 <% end %>

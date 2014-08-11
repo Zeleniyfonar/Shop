@@ -9,6 +9,6 @@ class StoreController < ApplicationController
     @categories = Category.all
     @carts = Cart.all
     @client = current_client
-    @favorite = Favorite.new
+    #@favorite = Favorite.new
   end
 end

@@ -47,7 +47,8 @@ Rails.application.routes.draw do
 
   resources :favorites do
     collection do
-      post 'destroyRef'
+      patch 'destroyRef'
+      patch 'addRef'
     end
   end
 
